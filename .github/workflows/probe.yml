@@ -1,0 +1,48 @@
+name: probe
+
+# Scheduled runs are best-effort on GitHub's side and are frequently late,
+# especially at the top of the hour. Treat the recorded timestamps as truth and
+# the cron expression as an aspiration.
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never let a slow run overlap the next one; results are appended to a shared
+# file and concurrent commits would conflict.
+concurrency:
+  group: probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probe snaptron.cs.jhu.edu
+        run: ./probe.sh
+
+      - name: Commit results
+        run: |
+          git config user.name  "snaptron-probe"
+          git config user.email "snaptron-probe@users.noreply.github.com"
+          git add results/
+          if git diff --staged --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git commit -m "probe $(date -u +%FT%TZ)"
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash && git push; then
+              exit 0
+            fi
+            echo "push attempt $attempt failed, retrying"
+            sleep 5
+          done
+          echo "could not push results" >&2
+          exit 1
