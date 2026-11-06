@@ -8,3 +8,5 @@
 2026-11-06T10:00:00Z	tcp	port=80 state=unreachable
 2026-11-06T10:00:00Z	dns	resolved=128.220.122.37
 2026-11-06T10:00:25Z	capture	file=failure-20261106T100000Z.txt
+2026-11-06T17:13:58Z	egress	ip=172.212.172.242 runner=GitHub Actions 1000002361
+2026-11-06T17:13:58Z	target	code=200 total=0.271500 connect=0.189676 tls=0.224183 bytes=8176
