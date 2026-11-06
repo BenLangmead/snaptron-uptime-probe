@@ -1,2 +1,10 @@
 2026-11-06T02:54:02Z	egress	ip=172.182.225.134 runner=GitHub Actions 1000002187
 2026-11-06T02:54:03Z	target	code=200 total=0.865697 connect=0.731981 tls=0.800580 bytes=8176
+2026-11-06T09:59:19Z	egress	ip=52.241.24.209 runner=GitHub Actions 1000002320
+2026-11-06T09:59:44Z	target	code=000 total=25.001054 connect=0.000000 tls=0.000000 bytes=0
+2026-11-06T09:59:44Z	capture	reason=target_probe_failed
+2026-11-06T09:59:44Z	control	code=403 total=0.092273 connect=0.077550 tls=0.086272 bytes=5660
+2026-11-06T09:59:52Z	tcp	port=443 state=unreachable
+2026-11-06T10:00:00Z	tcp	port=80 state=unreachable
+2026-11-06T10:00:00Z	dns	resolved=128.220.122.37
+2026-11-06T10:00:25Z	capture	file=failure-20261106T100000Z.txt

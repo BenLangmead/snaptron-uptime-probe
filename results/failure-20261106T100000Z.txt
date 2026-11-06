@@ -1,0 +1,9 @@
+=== 2026-11-06T10:00:00Z target probe failed ===
+egress ip: 52.241.24.209
+--- curl -v ---
+* Host snaptron.cs.jhu.edu:443 was resolved.
+* IPv6: (none)
+* IPv4: 128.220.122.37
+*   Trying 128.220.122.37:443...
+* Connection timed out after 25001 milliseconds
+* closing connection #0
